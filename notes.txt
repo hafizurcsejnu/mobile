@@ -1,0 +1,76 @@
+Aysha:
+=========
+1. Delete inv need to delete in baksh or bank
+
+
+Rajit Enterprise
+===============
+1. create a invoice for advance payment when new logbook created
+2. every payment treat as an advance debitCustomerAc with payment if of advanced payemtn. Thus match the customer ledger
+
+3. Expense for yard car in a single entity
+4. all products opening stock value -- no no-numeric value
+5. customer ledger previous due 
+expensed by default manager
+
+* expense ar cash sheet a same garir ak row te dekhano. 
+* duty total amount 
+
+
+case:
+------
+
+fuel ar sate aro kisu receive kora hote pre kina ??
+
+
+
+Done
+===============
+1. Purchase Edit with TC
+2. data lookup edit delete btn
+3. Invoice sl need to be removed ... 
+11. Payment history in pos design
+10. purchase add -> edit page not in products page
+6. barcode remove unselect
+9. product wise sells report
+8. invoice return
+    -- check same day
+    -- partially done
+
+
+tasks:
+===============
+4. cost calculation + profit loss
+
+7. custmer is not necessary or error message. 
+5. + btn in invoice need to be at bottom line
+
+
+======================
+bt 4, rabbi_enterprise
+======================
+1. purchase delete will credit all product and item details
+2. monthly sales report
+
+
+
+======================
+Ferdous Mobile Corner
+======================
+4. Walking customer. No information is needed. 
+
+
+1. Purchase item price based on sl. Need to be visible at stock. 
+2. Search option for sale based on sn.
+3. Missing: sale return option from invoice edit. 
+5. Partial payment option like 50% in cash another 50% in bkash
+6. Daily sales report: Product tile and profit 
+7. Due Report for daily/date-wise 
+8. Purchase return option
+9. Stock transfer/adjustment
+10. Access control ...
+11. Product report on product age, brand or product
+12. Warranty day count after product receive for warranty ... + Warranty product receive option
+13. Warranty Section Management. 
+
+

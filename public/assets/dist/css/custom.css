@@ -1,0 +1,202 @@
+img{
+    max-width: 100%!important;
+}
+.tr{
+    text-align: right;
+    padding-right: 3px!important;
+}
+.tc{
+    text-align: center;
+} 
+a.nl{
+    text-decoration: none!important;
+    color: #000!important;
+    padding-left: 5px;
+}
+a.btn.px-4 {
+    width: 80%;
+}
+.bgc-blue-l4 {
+    background: #fff!important;
+}
+button.btn.btn-burger.mr-2.d-none1.d-xl-flex {
+    color: #000;
+}
+input[type=checkbox] {
+    margin: 0;
+}
+.note-editable {
+    border: 1px solid #eeeeee;
+}
+label {
+    font-weight: bold;
+}
+.updated {
+    background: #74bd74;
+    color: #fff;
+}
+
+button.btn.radius-round.btn-outline-primary.border-2.btn-sm.ml-2 {
+    display: none;
+}
+.select2-container.select2-container--focus .select2-selection, .select2-container .select2-selection[aria-expanded="true"] {
+    border-color: #d7d8da!important;
+    height: 48px!important;
+    width: 100%!important;
+    font-size: 20px!important;
+    padding-top: 4px!important;
+    }
+    
+    a.task_id {
+    display: block;
+}
+  .card-header form {
+    width: 100%!important;
+}
+.tasks_item p {
+  display: inline;
+  }
+  .tasks_item {
+    margin: 4px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+.tasks_area a{
+  text-decoration: none;
+}
+
+button.btn-icon.btn-icon-primary.rounded-circle {
+    color: #653e45;
+    background: #fff;
+}
+
+.aside-header{
+    display: none;
+}
+
+.select2-container.select2-container--focus .select2-selection, .select2-container .select2-selection[aria-expanded="true"] {
+    border-color: #d7d8da!important;
+    height: 48px!important;
+    width: 100%!important;
+    font-size: 20px!important;
+    padding-top: 8px!important;
+}
+
+
+.section_link a {
+    border: 1px solid #9cc19c;
+    border-radius: 19px;
+    margin-top: 5px;
+    padding: 7px;
+}
+
+.section_link a.active {
+    border-radius: 19px;
+    color: #fff;
+    margin-top: 5px;
+    padding: 7px;
+    background: #4188b3;
+}
+
+.section_link a:hover{
+    background: #4188b3;
+    color: #fff;
+}
+.section_detail .row {
+    margin-bottom: 18px;
+}
+
+.contact_message {
+    margin-top: 95px;
+    border: 1px solid #d3d5d7;
+    padding: 10px;
+}
+
+
+
+
+/* sidebar dark  */
+
+.sidebar-darkcrimson {
+    background-color: #5f5b5c;
+    --active-border-offset-right: 1px;
+}
+
+.sidebar-inner {
+    background-color: #653e45!important;
+}
+
+a.nav-link {
+    color:rgba(255, 255, 255, 0.92)!important;
+}
+a.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.125)!important;
+    color: #fff;
+}
+
+li.nav-item.active {
+    background: #562c34!important;
+}
+
+.sidebar-light {
+    background-color: #e8e5de;
+    --active-border-offset-right: 0px;
+}
+
+.navbar-inner {
+    color: #000!important;
+    background-color: #fff;
+}
+
+.navbar-blue .navbar-input {
+    color: #000;
+    background-color: transparent;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: transparent;
+}
+
+.navbar-blue .navbar-intro {
+    background-color: #fff;
+}
+
+form.d-flex.align-items-center.ml-lg-4.py-1 {
+    background: #c6d4c9a3;
+    padding: 0 5px;
+}
+.navbar-nav ul li a {
+    color: #000!important;
+}
+button.btn.btn-burger.mr-2.d-none.d-xl-flex {
+    color: #000;
+}
+.navbar-inner {
+    border-bottom: 1px solid #e4e6e9;
+}
+/* sidebar dark end*/
+
+/* media query */
+@media screen and (max-width: 768px) {
+    button.btn.btn-burger.mr-2.d-none1.d-xl-flex {
+        display: none!important;
+    }
+    button.navbar-toggler.py-2 {
+        display: none!important;
+    }
+
+    .body-container > .navbar .navbar-intro {
+        width: 5rem!important;
+        /* width: var(--sidebar-width); */
+    }
+    .footer {
+        display: none;
+    }
+    a.navbar-brand.text-white {
+        display: none;
+    }
+    .dtr-inline.collapsed > tbody > tr > .dtr-control {
+        background: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3e%3cpath fill='none' stroke-width='1.5px' stroke='%231279cd' d='M2,3 L6,7 L10,3'/%3e%3c/svg%3e) center no-repeat;
+        background-size: 1.075rem;
+        background-position-x: calc(50% + 12px);
+    }
+  }

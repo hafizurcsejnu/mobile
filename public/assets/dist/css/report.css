@@ -1,0 +1,78 @@
+
+body {
+    overflow-x: hidden;
+    background-color: #fff;
+    color: #000;
+    font-family: 'Times New Roman', Times, serif;
+}
+table.table.top1_left tr, table.table.top1_right tr {
+    height: 21px;
+}
+
+table.table.top1_right {
+    float: right;
+}
+
+table th,
+tr {
+    height: 40px;
+}
+.d-none{
+    display: none;
+}
+td.box {
+    border: 1px dotted grey;
+}
+
+tr.product_row {
+    border-bottom: 1px dotted grey;
+}
+
+.c_details {
+    background: #f3f3f3;
+}
+.invoice_wrapper button{
+    width: 200px;
+    height: 40px;
+    color: #000!important;
+}
+.product_title{
+    font-weight: 600;
+}
+
+
+@media screen {
+    .invoice_wrapper {
+        width: 80% !important;
+        margin: 50px auto;
+    }
+    .footer {
+        display: none;
+    }
+
+}
+
+@media print {
+    .footer {
+        position: fixed!important;
+        bottom: 0!important;
+        width: 100%;
+    }
+    .invoice_wrapper {
+        width: 100% !important;
+        margin: 50px auto;
+    }
+
+    div#printableArea img {
+        display: block;
+        margin-top: 100px;
+    }
+
+    div#printableArea {
+        margin-left: 25px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        visibility: visible;
+    }
+}

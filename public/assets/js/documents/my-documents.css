@@ -1,0 +1,60 @@
+.page-content {
+  background-color: #f3f3f4;
+}
+.page-header {
+  background-color: #fff;
+}
+.text-primary-d2 {
+  margin-left: 1rem;
+}
+.upload-files-btn {
+  width: 100%;
+}
+.list-group-item {
+  border: unset;
+}
+.folder-list-item {
+  cursor: pointer;
+}
+.renameFile {
+  text-align: initial;
+}
+.created-date {
+  text-align: initial;
+}
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 0rem 0.25rem 0.25rem !important;
+  background-color: #fff;
+}
+.folder-active {
+  background-color: #dedeed;
+}
+.image-sec{
+  background-color: #fff;
+}
+.docs-card-body-title {
+  word-wrap: break-word;
+}
+#userFiles .fileItem div p{
+  font-size: 12px;
+}
+#userFiles .fileItem div img{
+  /* height: 150px!important; */
+  width: 100%;
+  box-sizing: border-box;
+}
+#userFiles .position-center{
+  top: 75%;
+}
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 0 0.25rem;
+}
+.folder-action-btn {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}

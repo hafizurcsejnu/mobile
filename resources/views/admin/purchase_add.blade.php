@@ -225,58 +225,15 @@ button.btn.btn-primary {
                           <input type="text" name="qty[]" id="qty1" class="form-control qty">
                         </div>
                       </div>
-                      <div class="col-md-1">
-  
-  <td id="td_<?=$rowcount;?>_2">
-    <button type="button" onclick="show_imei_modal(<?=$rowcount;?>)" name="td_data_<?=$rowcount;?>_2" id="td_data_<?=$rowcount;?>_2" class="btn btn-warning" >Add IMEI Number</button>
-  </td>
-
-{{-- <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imeiModal">
-  <i class="fa fa-plus"></i>
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="imeiModal" tabindex="-1" role="dialog" aria-labelledby="imeiModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="imeiModalLabel">IMEI Serial</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      @php
-          $total_imei = 2;
-      @endphp
-      <script type="text/javascript">
-          $("#qty1").change(function () {
-            //alert('hi');
-            var total_imei = $(this).val();
-           
-          });
-      </script>
-       <?php $total_imei = '<script type=text/javascript>total_imei</script>';?>
-
-      <div class="modal-body">
-        <div class="imei">
-          @for ($i = 0; $i < 10; $i++)
-            <div class="form-group">
-              <input type="text" name="product_sn[]" id="product_sn1" class="form-control product_sn" placeholder="imei {{$i+1}}">
-            </div>
-          @endfor
-          
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
-      </div>
-    </div>
-  </div>
-</div> --}}
-
+                      <div class="col-md-1" id="imei_number_1">
+                        
+                          <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-primary add_imei" data-toggle="modal" data-row="1" data-target="#imeiModal">
+                            <i class="fa fa-plus"></i>
+                          </button>
+                          <div id="imei_number_1_input">
+                            
+                          </div>
                       </div> 
                       
                       <div class="col-md-2">
@@ -353,21 +310,46 @@ button.btn.btn-primary {
 
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="imeiModal" tabindex="-1" role="dialog" aria-labelledby="imeiModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imeiModalLabel">IMEI Serial</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="imei">
+                        
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="save_imei">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- close modal -->
   <script>
-
-  function show_imei_modal(row_id){
-
-      $('#imei_modal').modal('toggle');
-      var quantity = $("#td_data_"+row_id+"_3").val();
-      // generate input fields according to quantity
+    $(document).on('click', '.add_imei', function() {
+      var row = $(this).data('row');
+      var quantity = parseInt($('#qty' + row).val());
+      var existing_imei = $('#imei_number_' + row + '_input').find('input').val();
+      if (existing_imei == '' || existing_imei == null || existing_imei == undefined) {
+        existing_imei = [];
+      } else {
+        existing_imei = existing_imei.split(',');
+      }
       var html = '';
       for(i=1;i<=quantity;i++){
-        html += '<div class="form-group"><input type="text" class="form-control" id="imei_'+i+'" name="imei_'+row_id+'_2[]" placeholder="Enter IMEI '+i+'"></div>';
+        html += '<div class="form-group"><input type="text" class="form-control" id="imei_'+i+'" name="imei_'+row+'[]" placeholder="Enter IMEI '+i+'" value="'+((existing_imei[i-1]) ?? '')+'"></div>';
       }
-      $("#imei_modal .modal-body").html(html);
-      $('#imei_modal #add_imei').data('row-id', row_id);
-
-  }
+      $("#imeiModal .modal-body").html(html);
+      $('#imeiModal #save_imei').data('row', row);
+    });
 
 
     $(document).on('change', '.stock_type', function(){  
@@ -417,7 +399,7 @@ button.btn.btn-primary {
         html += '<div class="col-md-1"><div class="form-group"><input type="text" name="qty[]" id="qty' + i +
           '" class="form-control qty"></div></div>'; 
 
-       html += '<div class="col-md-1"><div class="form-group"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imeiModal"><i class="fa fa-plus"></i></button></div></div>'; 
+       html += '<div class="col-md-1" id="imei_number_'+i+'"><div class="form-group"><button type="button" class="btn btn-primary add_imei" data-row="'+i+'" data-toggle="modal" data-target="#imeiModal"><i class="fa fa-plus"></i></button><div id="imei_number_'+i+'_input"></div></div></div>'; 
        
         html +=
           '<div class="col-md-2"><div class="form-group"><input type="text" name="price[]" id="unitPrice' +
@@ -596,6 +578,18 @@ button.btn.btn-primary {
   
   
     });
+
+    $(document).on('click', '#save_imei', function() {
+            var row_id = $(this).data('row');
+            var imei = '';
+            var inputs = $('#imeiModal .modal-body input');
+            for(var i=0; i<inputs.length; i++) {
+               imei += inputs[i].value + ',';
+            }
+            var input = '<input type="hidden" name="imei_' + row_id +'" value="' + imei + '"/>';
+            $('#imei_number_' + row_id + '_input').html(input);
+            $('#imeiModal').modal('toggle');
+        });
   </script>
   
 @endsection

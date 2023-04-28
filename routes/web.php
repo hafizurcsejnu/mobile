@@ -433,6 +433,7 @@ Route::middleware([admin::class])->group(function () {
     Route::get('/due-invoices', [InvoiceController::class, 'dueInvoices']);  
     Route::get('/invoices', [InvoiceController::class, 'index']);  
     Route::get('/add-invoice', [InvoiceController::class, 'create']);
+    Route::get('/add-invoice2', [InvoiceController::class, 'create2']);
     Route::get('/create-invoice', [InvoiceController::class, 'createInvoice']);
     Route::get('/wholesale-invoice', [InvoiceController::class, 'createWholesale']);
     Route::post('/store_invoice', [InvoiceController::class, 'store']);
@@ -461,6 +462,7 @@ Route::middleware([admin::class])->group(function () {
 
     Route::post('find_product',[InvoiceController::class,'find_product']);
     Route::post('find_product_sn',[InvoiceController::class,'find_product_sn']);
+    Route::post('find_imei',[InvoiceController::class,'find_imei']);
     Route::post('find_product_code',[InvoiceController::class,'find_product_code']);
     Route::post('find_customer',[InvoiceController::class,'find_customer']);
     Route::post('find_employee',[InvoiceController::class,'find_employee']);

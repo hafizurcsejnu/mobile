@@ -56,9 +56,27 @@ class InvoiceController extends Controller
           return response()->json(['success'=>true,'data'=>$product]);
         }else{
           return response()->json(['success'=>false,'data'=>'404']);
-        }
-        
+        }        
     }
+    public function find_imei(Request $request){       
+        $product_stock = DB::table('product_stock_details')
+        ->where('imei', $request->imei)
+        ->where('client_id', session('client_id'))
+        ->first();
+
+        $product = DB::table('products')
+        ->where('id', $product_stock->product_id)
+        ->first();
+        
+        
+        // dd($product);
+        if($product){
+          return response()->json(['success'=>true,'data'=>$product]);
+        }else{
+          return response()->json(['success'=>false,'data'=>'404']);
+        }        
+    }
+    
     public function find_customer(Request $request){
         $customer = DB::table('customers')
             ->where('id', $request->customerId)
@@ -157,6 +175,10 @@ class InvoiceController extends Controller
       public function create()
       {    
         return view('admin.invoice_add'); 
+      }  
+      public function create2()
+      {    
+        return view('admin.invoice_add_m'); 
       }  
       
       public function invoiceStock()

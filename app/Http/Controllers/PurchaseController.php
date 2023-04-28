@@ -49,10 +49,11 @@ class PurchaseController extends Controller
 
       public function store(Request $request)
       {         
+        //dd($request);
         $total_item = count($request->product_id);
         $total_price = $request->total_price;
         $transport_cost = $request->transport_cost;
-        $transport_cost_percent = $transport_cost/$total_price*100;
+        //$transport_cost_percent = $transport_cost/$total_price*100;
         
         $total_qty = 0;
         for ($i=0; $i < $total_item; $i++) {          
@@ -98,8 +99,8 @@ class PurchaseController extends Controller
           }
           
           if($transport_cost != null){            
-            $courier_pu =  $request->price[$i] * $transport_cost_percent / 100;
-            $price_c = $request->price[$i] + $courier_pu;
+            //$courier_pu =  $request->price[$i] * $transport_cost_percent / 100;
+            //$price_c = $request->price[$i] + $courier_pu;
             $total_price_c = $request->price[$i] * $request->qty[$i] + $transport_cost;             
           }else{
             $courier_pu = null;
@@ -123,30 +124,22 @@ class PurchaseController extends Controller
           }
           DB::table('purchase_details')->insert($pd); 
           
-          if(isset($request->product_sn[$i]) && $request->product_sn[$i] != null){
-            
-            // $product_sn = explode(',', $request->product_sn[$i]);
-            // foreach($product_sn as $product_sn){
-            //   $psd=array();
-            //   $psd['purchase_id'] = $purchase_id;
-            //   $psd['product_id'] = $request->product_id[$i];
-            //   $psd['product_sn'] = $product_sn; 
-            //   $psd['client_id'] = session('client_id'); 
-            //   DB::table('product_stock_details')->insert($psd);               
-            // }
-
-            $total_imei = count($request->product_sn);
+          // imei record 
+          $imei = 'imei_'.$i+1;          
+          if(isset($request->$imei) && $request->$imei != null){
+            $imei_array = explode(",", $request->$imei);
+            //dd($imei_array[5]);
+            $total_imei = count($imei_array);
             for ($j=0; $j < $total_imei; $j++) { 
-              if($request->product_sn[$j] == null) continue;
+              if($imei_array[$j] == null) continue;
               $psd = array();
               $psd['purchase_id'] = $purchase_id;
               $psd['product_id'] = $request->product_id[$i];
-              $psd['product_sn'] = $request->product_sn[$j]; 
+              $psd['imei'] = $imei_array[$j];
+              // $psd['product_sn'] = $request->product_sn[$j]; 
               $psd['client_id'] = session('client_id'); 
               DB::table('product_stock_details')->insert($psd);               
             }
-
-
             //dd('break 2');
           }
           $this->debitProductStock($request->product_id[$i], $request->store_id, $request->qty[$i], $purchase_id);

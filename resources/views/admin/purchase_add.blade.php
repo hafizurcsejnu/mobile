@@ -234,7 +234,7 @@ button.btn.btn-primary {
 {{-- <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imeiModal">
   <i class="fa fa-plus"></i>
-</button>
+</button> 
 
 <!-- Modal -->
 <div class="modal fade" id="imeiModal" tabindex="-1" role="dialog" aria-labelledby="imeiModalLabel" aria-hidden="true">

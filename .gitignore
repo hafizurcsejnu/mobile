@@ -5,4 +5,3 @@
 .env
 .htaccess
 .vscode
-resources/views/admin/invoice_add.blade.php

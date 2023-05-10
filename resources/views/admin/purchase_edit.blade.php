@@ -369,7 +369,7 @@
                         @if ($data->thumbnail != null)
                           <img src="{{ URL::asset('storage/app/public/'.$data->thumbnail.'') }}" style="width: 100px; height: 100px;">
                         @else 
-                          <img src="{{ URL::asset('images/noimage.png') }}" id="noimage"style="width: 100px; height: 100px;">
+                          {{-- <img src="{{ URL::asset('images/noimage.png') }}" id="noimage"style="width: 100px; height: 100px;"> --}}
                         @endif 
 
 

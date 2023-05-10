@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 29, 2023 at 06:05 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Generation Time: May 10, 2023 at 12:56 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -159,6 +159,13 @@ CREATE TABLE `clients` (
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `clients`
+--
+
+INSERT INTO `clients` (`id`, `name`, `business_type`, `image`, `address`, `city`, `state`, `country`, `mobile`, `active`, `created_at`, `updated_at`) VALUES
+(1, 'Sabuj Telecom', 'Mobile Showroom', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-08 12:51:32', '2023-05-08 12:51:32');
+
 -- --------------------------------------------------------
 
 --
@@ -218,6 +225,27 @@ CREATE TABLE `company_accounts` (
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `company_accounts`
+--
+
+INSERT INTO `company_accounts` (`id`, `company_id`, `purchase_id`, `expense_id`, `type`, `amount_in`, `amount_out`, `current_balance`, `client_id`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, '1', '1', NULL, 'Debit', '5000', NULL, '5000', '1', '2', '2023-04-16 21:04:35', '2023-04-16 21:04:35'),
+(2, '1', '2', NULL, 'Debit', '3500', NULL, '8500', '1', '2', '2023-04-28 03:28:57', '2023-04-28 03:28:57'),
+(3, '1', '3', NULL, 'Debit', '0', NULL, '8500', '1', '2', '2023-04-28 05:17:24', '2023-04-28 05:17:24'),
+(4, '1', '4', NULL, 'Debit', '2500', NULL, '11000', '1', '2', '2023-04-28 05:19:39', '2023-04-28 05:19:39'),
+(5, '1', '5', NULL, 'Debit', '2500', NULL, '13500', '1', '2', '2023-04-28 05:20:03', '2023-04-28 05:20:03'),
+(6, '1', '6', NULL, 'Debit', '2500', NULL, '16000', '1', '2', '2023-04-28 05:20:43', '2023-04-28 05:20:43'),
+(7, '1', '7', NULL, 'Debit', '2500', NULL, '18500', '1', '2', '2023-04-28 05:21:05', '2023-04-28 05:21:05'),
+(8, '1', '8', NULL, 'Debit', '2500', NULL, '21000', '1', '2', '2023-04-28 05:21:14', '2023-04-28 05:21:14'),
+(9, '1', '9', NULL, 'Debit', '2500', NULL, '23500', '1', '2', '2023-04-28 05:21:37', '2023-04-28 05:21:37'),
+(10, '1', '10', NULL, 'Debit', '2500', NULL, '26000', '1', '2', '2023-04-28 05:21:58', '2023-04-28 05:21:58'),
+(11, '1', '11', NULL, 'Debit', '123000', NULL, '149000', '1', '2', '2023-04-28 13:32:49', '2023-04-28 13:32:49'),
+(12, '1', '12', NULL, 'Debit', '123000', NULL, '272000', '1', '2', '2023-04-28 13:33:36', '2023-04-28 13:33:36'),
+(13, '1', '13', NULL, 'Debit', '123000', NULL, '395000', '1', '2', '2023-04-28 13:33:55', '2023-04-28 13:33:55'),
+(14, '1', '14', NULL, 'Debit', '123000', NULL, '518000', '1', '2', '2023-04-28 13:34:31', '2023-04-28 13:34:31'),
+(15, '1', '15', NULL, 'Debit', '50000', NULL, '568000', '1', '2', '2023-05-08 12:53:28', '2023-05-08 12:53:28');
+
 -- --------------------------------------------------------
 
 --
@@ -272,13 +300,6 @@ CREATE TABLE `customers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`id`, `title`, `proprietor`, `sub_title`, `slug`, `type`, `category_id`, `image`, `customer_type`, `description`, `short_description`, `address`, `mobile`, `email`, `link_title`, `link_action`, `active`, `hit_count`, `client_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'sdf', 'sdf', NULL, 'sdf', 'Indivisual', NULL, NULL, NULL, NULL, NULL, 'Dhaka', 'sdf', 'softwareeng.me@gmail.com', NULL, NULL, 'on', NULL, '1', '2', '', '2023-03-29 13:54:54', '2023-03-29 13:54:54');
-
 -- --------------------------------------------------------
 
 --
@@ -292,6 +313,7 @@ CREATE TABLE `customer_accounts` (
   `invoice_id` varchar(55) DEFAULT NULL,
   `payment_id` varchar(55) DEFAULT NULL,
   `expense_id` varchar(55) DEFAULT NULL,
+  `return_id` varchar(55) DEFAULT NULL,
   `type` varchar(55) DEFAULT NULL,
   `amount_in` varchar(255) DEFAULT NULL,
   `amount_out` varchar(255) DEFAULT NULL,
@@ -300,6 +322,20 @@ CREATE TABLE `customer_accounts` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer_accounts`
+--
+
+INSERT INTO `customer_accounts` (`id`, `client_id`, `customer_id`, `invoice_id`, `payment_id`, `expense_id`, `return_id`, `type`, `amount_in`, `amount_out`, `current_balance`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, '1', '1', '1', NULL, NULL, NULL, 'Credit', NULL, '9900', '-9900', '2', '2023-05-08 14:06:59', '2023-05-08 14:06:59'),
+(2, '1', '1', '2', NULL, NULL, NULL, 'Credit', NULL, '9900', '-19800', '2', '2023-05-08 14:07:48', '2023-05-08 14:07:48'),
+(3, '1', '1', NULL, '2', NULL, NULL, 'Debit', '9900', NULL, '-9900', '2', '2023-05-08 14:07:48', '2023-05-08 14:07:48'),
+(4, '1', '1', '3', NULL, NULL, NULL, 'Credit', NULL, '9900', '-19800', '2', '2023-05-08 14:08:22', '2023-05-08 14:08:22'),
+(5, '1', '1', NULL, '3', NULL, NULL, 'Debit', '9900', NULL, '-9900', '2', '2023-05-08 14:08:22', '2023-05-08 14:08:22'),
+(6, '1', '1', '4', NULL, NULL, NULL, 'Credit', NULL, '9900', '-19800', '2', '2023-05-08 14:08:42', '2023-05-08 14:08:42'),
+(7, '1', '1', NULL, '4', NULL, NULL, 'Debit', '9900', NULL, '-9900', '2', '2023-05-08 14:08:42', '2023-05-08 14:08:42'),
+(8, '1', '1', '4', NULL, NULL, NULL, 'Credit', NULL, '9900', '-19800', '2', '2023-05-08 14:08:42', '2023-05-08 14:08:42');
 
 -- --------------------------------------------------------
 
@@ -523,6 +559,16 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `inv_id`, `client_id`, `customer_id`, `additional_1`, `additional_2`, `total_item`, `sub_total`, `tax`, `discount_amount`, `discount_percentage`, `total_price`, `previous_due`, `total_bill`, `paid_amount`, `due_amount`, `payable_price`, `profit`, `payment_id`, `status`, `invoice_type`, `note`, `active`, `created_by`, `updated_by`, `invoice_date`, `created_at`, `updated_at`) VALUES
+(1, '1', '1', '1', NULL, NULL, 1, '9900', '0', 0, '0%', '9900', '0', '9900', '9900', '0', NULL, NULL, '', 'Paid', NULL, NULL, 'on', '2', NULL, '2023-05-08', '2023-05-08 08:06:59 pm', '2023-05-08 14:06:59'),
+(2, '2', '1', '1', NULL, NULL, 1, '9900', '0', 0, '0%', '9900', '0', '9900', '9900', '0', NULL, NULL, '', 'Paid', NULL, NULL, 'on', '2', NULL, '2023-05-08', '2023-05-08 08:07:48 pm', '2023-05-08 14:07:48'),
+(3, '3', '1', '1', NULL, NULL, 1, '9900', '0', 0, '0%', '9900', '0', '9900', '9900', '0', NULL, NULL, '', 'Paid', NULL, NULL, 'on', '2', NULL, '2023-05-08', '2023-05-08 08:08:22 pm', '2023-05-08 14:08:22'),
+(4, '4', '1', '1', NULL, NULL, 1, '9900', '0', 0, '0%', '9900', '0', '9900', '9900', '0', NULL, NULL, '', 'Paid', NULL, NULL, 'on', '2', NULL, '2023-05-08', '2023-05-08 08:08:42 pm', '2023-05-08 14:08:42');
+
 -- --------------------------------------------------------
 
 --
@@ -541,6 +587,8 @@ CREATE TABLE `order_details` (
   `qty_box_pcs` varchar(255) DEFAULT NULL,
   `tp` varchar(55) DEFAULT NULL,
   `price` float NOT NULL,
+  `less_percent` varchar(55) DEFAULT NULL,
+  `less_amount` varchar(55) DEFAULT NULL,
   `tax` varchar(255) DEFAULT NULL,
   `sub_total` float NOT NULL,
   `total_price` varchar(255) DEFAULT NULL,
@@ -550,6 +598,13 @@ CREATE TABLE `order_details` (
   `created_at` varchar(55) NOT NULL,
   `updated_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `client_id`, `order_id`, `customer_id`, `product_id`, `product_sn`, `product_type`, `qty`, `qty_box_pcs`, `tp`, `price`, `less_percent`, `less_amount`, `tax`, `sub_total`, `total_price`, `profit_unit`, `profit`, `active`, `created_at`, `updated_at`) VALUES
+(1, '1', 4, '1', 2, '541100010013', 'Due', 1, NULL, '10500', 11000, '10', '1100', '0', 11000, '11000', '500', '500', 'on', '2023-05-08 08:08:42 pm', '2023-05-08 20:08:42');
 
 -- --------------------------------------------------------
 
@@ -610,6 +665,16 @@ CREATE TABLE `payments` (
   `created_at` varchar(255) NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `order_id`, `amount`, `payment_method`, `bank_id`, `active`, `customer_id`, `client_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '1', '9900', 'Cash', NULL, 'on', '1', '1', NULL, NULL, '2023-05-08 08:06:59 pm', '2023-05-08 20:06:59'),
+(2, '2', '9900', 'Cash', NULL, 'on', '1', '1', NULL, NULL, '2023-05-08 08:07:48 pm', '2023-05-08 20:07:48'),
+(3, '3', '9900', 'Cash', NULL, 'on', '1', '1', NULL, NULL, '2023-05-08 08:08:22 pm', '2023-05-08 20:08:22'),
+(4, '4', '9900', 'Cash', NULL, 'on', '1', '1', NULL, NULL, '2023-05-08 08:08:42 pm', '2023-05-08 20:08:42');
 
 -- --------------------------------------------------------
 
@@ -723,7 +788,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `client_id`, `name`, `code`, `category_id`, `sub_category_id`, `tp`, `price`, `barcode`, `location`, `product_type`, `service_type`, `model`, `images`, `thumbnail`, `source_files`, `file_formats`, `slug`, `description`, `short_description`, `meta_description`, `msrp`, `style`, `usages`, `materials`, `hidden_data`, `brand`, `particular`, `warranty`, `measurement_unit`, `featured`, `is_set`, `active`, `hit_count`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '1', 'Samsung M20', NULL, '1', NULL, '15000', 16000, NULL, NULL, 'Product', NULL, NULL, '', NULL, NULL, NULL, 'Samsung-M20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N/A', NULL, '10', NULL, NULL, NULL, 'on', NULL, '2', '', '2023-03-29 15:43:41', '2023-03-29 15:43:41');
+(1, '1', 'Samsung M20', NULL, '1', NULL, '15000', 16000, NULL, NULL, 'Product', NULL, NULL, '', NULL, NULL, NULL, 'Samsung-M20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N/A', NULL, '10', NULL, NULL, NULL, 'on', NULL, '2', '', '2023-03-29 15:43:41', '2023-03-29 15:43:41'),
+(2, '1', 'Oppo A95', NULL, '1', NULL, '10500', 11000, NULL, NULL, 'Product', NULL, NULL, '', NULL, NULL, NULL, 'Oppo-A95', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N/A', NULL, '10', NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 05:02:05', '2023-04-28 05:02:05');
 
 -- --------------------------------------------------------
 
@@ -790,6 +856,7 @@ CREATE TABLE `product_stock_details` (
   `id` int(11) NOT NULL,
   `product_id` varchar(111) NOT NULL,
   `product_sn` varchar(111) DEFAULT NULL,
+  `imei` varchar(55) DEFAULT NULL,
   `purchase_id` varchar(55) DEFAULT NULL,
   `invoice_id` varchar(55) DEFAULT NULL,
   `status` varchar(55) DEFAULT NULL,
@@ -832,6 +899,27 @@ CREATE TABLE `purchases` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `purchases`
+--
+
+INSERT INTO `purchases` (`id`, `title`, `client_id`, `slug`, `company_id`, `vendor_id`, `supplier_id`, `total_item`, `total_qty`, `transport_cost`, `total_price`, `date`, `dealer_name`, `dealer_address`, `image`, `description`, `notes`, `active`, `hit_count`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Test 2', '1', 'test-2', '1', NULL, NULL, '1', '10', NULL, '5000', '2023-04-17', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-16 21:04:35', '2023-04-16 21:04:35'),
+(2, 'Test 3', '1', 'test-3', '1', NULL, NULL, '2', '7', NULL, '3500', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 03:28:57', '2023-04-28 03:28:57'),
+(3, 'Test 4', '1', 'test-4', '1', NULL, NULL, '2', '5', NULL, '0', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 05:17:24', '2023-04-28 05:17:24'),
+(4, 'sdf', '1', 'sdf', '1', NULL, NULL, '2', '5', NULL, '2500', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 05:19:39', '2023-04-28 05:19:39'),
+(5, 'sdf', '1', 'sdf', '1', NULL, NULL, '2', '5', NULL, '2500', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 05:20:03', '2023-04-28 05:20:03'),
+(6, 'sdf', '1', 'sdf', '1', NULL, NULL, '2', '5', NULL, '2500', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 05:20:43', '2023-04-28 05:20:43'),
+(7, 'sdf', '1', 'sdf', '1', NULL, NULL, '2', '5', NULL, '2500', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 05:21:05', '2023-04-28 05:21:05'),
+(8, 'sdf', '1', 'sdf', '1', NULL, NULL, '2', '5', NULL, '2500', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 05:21:14', '2023-04-28 05:21:14'),
+(9, 'sdf', '1', 'sdf', '1', NULL, NULL, '2', '5', NULL, '2500', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 05:21:37', '2023-04-28 05:21:37'),
+(10, 'sdf', '1', 'sdf', '1', NULL, NULL, '2', '5', NULL, '2500', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 05:21:58', '2023-04-28 05:21:58'),
+(11, 'Samsung Purchase', '1', 'samsung-purchase', '1', NULL, NULL, '2', '9', NULL, '123000', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 13:32:49', '2023-04-28 13:32:49'),
+(12, 'Samsung Purchase', '1', 'samsung-purchase', '1', NULL, NULL, '2', '9', NULL, '123000', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 13:33:36', '2023-04-28 13:33:36'),
+(13, 'Samsung Purchase', '1', 'samsung-purchase', '1', NULL, NULL, '2', '9', NULL, '123000', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 13:33:55', '2023-04-28 13:33:55'),
+(14, 'Samsung Purchase', '1', 'samsung-purchase', '1', NULL, NULL, '2', '9', NULL, '123000', '2023-04-28', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-04-28 13:34:31', '2023-04-28 13:34:31'),
+(15, 'Abc', '1', 'abc', '1', NULL, NULL, '2', '4', NULL, '50000', '2023-05-08', NULL, NULL, NULL, NULL, NULL, 'on', NULL, '2', '', '2023-05-08 12:53:28', '2023-05-08 12:53:28');
+
 -- --------------------------------------------------------
 
 --
@@ -856,6 +944,31 @@ CREATE TABLE `purchase_details` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `purchase_details`
+--
+
+INSERT INTO `purchase_details` (`id`, `purchase_id`, `product_id`, `qty`, `price`, `courier`, `total_price`, `courier_pu`, `price_c`, `total_price_c`, `product_sn`, `client_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '1', '1', '10', '500', NULL, '5000', '0', '500', '5000', '541100010013', NULL, NULL, NULL, '2023-04-16 21:04:35', '2023-04-16 21:04:35'),
+(2, '2', '1', '5', '500', NULL, '2500', '0', '500', '2500', NULL, NULL, NULL, NULL, '2023-04-28 03:28:57', '2023-04-28 03:28:57'),
+(3, '2', '1', '2', '500', NULL, '1000', '0', '500', '1000', NULL, NULL, NULL, NULL, '2023-04-28 03:28:57', '2023-04-28 03:28:57'),
+(4, '3', '2', '3', NULL, NULL, '0', '0', '0', '0', NULL, NULL, NULL, NULL, '2023-04-28 05:17:24', '2023-04-28 05:17:24'),
+(5, '3', '1', '2', NULL, NULL, '0', '0', '0', '0', NULL, NULL, NULL, NULL, '2023-04-28 05:17:24', '2023-04-28 05:17:24'),
+(6, '4', '2', '3', '500', NULL, '1500', '0', '500', '1500', NULL, NULL, NULL, NULL, '2023-04-28 05:19:39', '2023-04-28 05:19:39'),
+(7, '5', '2', '3', '500', NULL, '1500', '0', '500', '1500', NULL, NULL, NULL, NULL, '2023-04-28 05:20:03', '2023-04-28 05:20:03'),
+(8, '6', '2', '3', '500', NULL, '1500', '0', '500', '1500', NULL, NULL, NULL, NULL, '2023-04-28 05:20:43', '2023-04-28 05:20:43'),
+(9, '7', '2', '3', '500', NULL, '1500', '0', '500', '1500', NULL, NULL, NULL, NULL, '2023-04-28 05:21:05', '2023-04-28 05:21:05'),
+(10, '8', '2', '3', '500', NULL, '1500', '0', '500', '1500', NULL, NULL, NULL, NULL, '2023-04-28 05:21:14', '2023-04-28 05:21:14'),
+(11, '9', '2', '3', '500', NULL, '1500', '0', '500', '1500', NULL, NULL, NULL, NULL, '2023-04-28 05:21:37', '2023-04-28 05:21:37'),
+(12, '10', '2', '3', '500', NULL, '1500', '0', '500', '1500', NULL, NULL, NULL, NULL, '2023-04-28 05:21:58', '2023-04-28 05:21:58'),
+(13, '11', '1', '5', '15000', NULL, '75000', '0', '15000', '75000', NULL, NULL, NULL, NULL, '2023-04-28 13:32:49', '2023-04-28 13:32:49'),
+(14, '12', '1', '5', '15000', NULL, '75000', '0', '15000', '75000', NULL, NULL, NULL, NULL, '2023-04-28 13:33:36', '2023-04-28 13:33:36'),
+(15, '13', '1', '5', '15000', NULL, '75000', '0', '15000', '75000', NULL, NULL, NULL, NULL, '2023-04-28 13:33:55', '2023-04-28 13:33:55'),
+(16, '14', '1', '5', '15000', NULL, '75000', '0', '15000', '75000', NULL, NULL, NULL, NULL, '2023-04-28 13:34:31', '2023-04-28 13:34:31'),
+(17, '14', '2', '4', '12000', NULL, '48000', '0', '12000', '48000', NULL, NULL, NULL, NULL, '2023-04-28 13:34:31', '2023-04-28 13:34:31'),
+(18, '15', '1', '2', '15000', NULL, '30000', '0', '15000', '30000', NULL, NULL, NULL, NULL, '2023-05-08 12:53:28', '2023-05-08 12:53:28'),
+(19, '15', '2', '2', '10000', NULL, '20000', '0', '10000', '20000', NULL, NULL, NULL, NULL, '2023-05-08 12:53:28', '2023-05-08 12:53:28');
 
 -- --------------------------------------------------------
 
@@ -986,7 +1099,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `client_id`, `title`, `sub_title`, `business_type`, `type_description`, `product_type`, `stock_condition`, `stock_deduction`, `slug`, `logo_header`, `logo_footer`, `invoice_message`, `product_serial`, `warranty`, `wholesale`, `favicon`, `description`, `short_description`, `meta_description`, `email`, `phone`, `mobile`, `address`, `website`, `fb_link`, `twitter_link`, `linkedin_link`, `instagram_link`, `pinterest_link`, `youtube_link`, `additional_1_title`, `additional_2_title`, `payment_details`, `customer_signature`, `inv_logo_size`, `nav_logo_size`, `inv_title_size`, `inv_sub_title_size`, `inv_address_size`, `product_ob`, `customer_ob`, `company_ob`, `language`, `active`, `hit_count`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '1', 'Sabuj Telecom', 'A trusted computer and mobile showroom', 'm', 'Mobile', 'Product', NULL, NULL, NULL, 'images/1zXMsMEhVR0aAUpiiRjG9QFRmvSeFBd8iplhwSxn.png', 'images/xmFiBxS0f7i0R7UJKMp9nA2krZCJCK37mbWJP5ab.png', NULL, NULL, 'yes', 'yes', 'images/oXI0dtvybFkCTatMZobXodyhSFuvFjBw65Ho1i1Q.png', NULL, NULL, NULL, 'ferdousmobile@gmail.com', NULL, '01756976640, 01721129798', 'Level# 1, Shop# 10, Bagherhat.', NULL, 'https://www.facebook.com/', 'https://www.Twitter.com/', 'https://www.Linkedin.com/', 'https://www.Instagram.com/', 'https://www.Pinterest.com/', 'https://www.Youtube.com/', 'Computer Type', 'Num of Service', 'yes', NULL, '100', '70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'on', NULL, NULL, '2', NULL, '2023-01-11 01:32:52');
+(1, '1', 'Sabuj Telecom', 'A trusted computer and mobile showroom', 'm', 'Mobile', 'Product', NULL, NULL, NULL, 'images/1zXMsMEhVR0aAUpiiRjG9QFRmvSeFBd8iplhwSxn.png', 'images/xmFiBxS0f7i0R7UJKMp9nA2krZCJCK37mbWJP5ab.png', NULL, NULL, 'yes', 'yes', 'images/oXI0dtvybFkCTatMZobXodyhSFuvFjBw65Ho1i1Q.png', NULL, NULL, NULL, 'ferdousmobile@gmail.com', NULL, '01756976640, 01721129798', 'Level# 1, Shop# 10, Bagherhat.', NULL, 'https://www.facebook.com/', 'https://www.Twitter.com/', 'https://www.Linkedin.com/', 'https://www.Instagram.com/', 'https://www.Pinterest.com/', 'https://www.Youtube.com/', 'Computer Type', 'Num of Service', 'yes', NULL, '100', '70', NULL, NULL, NULL, 'on', NULL, NULL, NULL, 'on', NULL, NULL, '2', NULL, '2023-01-11 01:32:52');
 
 -- --------------------------------------------------------
 
@@ -1021,7 +1134,7 @@ CREATE TABLE `stores` (
 --
 
 INSERT INTO `stores` (`id`, `client_id`, `title`, `sub_title`, `slug`, `store_type`, `category_id`, `image`, `description`, `short_description`, `address`, `link_title`, `link_action`, `active`, `hit_count`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '1', 'Store', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, '1', 'Store', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'on', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1337,7 +1450,7 @@ ALTER TABLE `cash_flows`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `companies`
@@ -1349,7 +1462,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT for table `company_accounts`
 --
 ALTER TABLE `company_accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `coupons`
@@ -1367,7 +1480,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `customer_accounts`
 --
 ALTER TABLE `customer_accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `daily_cash`
@@ -1421,13 +1534,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -1439,7 +1552,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `productions`
@@ -1457,7 +1570,7 @@ ALTER TABLE `production_details`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
@@ -1469,7 +1582,7 @@ ALTER TABLE `product_categories`
 -- AUTO_INCREMENT for table `product_stocks`
 --
 ALTER TABLE `product_stocks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `product_stock_details`
@@ -1481,13 +1594,13 @@ ALTER TABLE `product_stock_details`
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `purchase_details`
 --
 ALTER TABLE `purchase_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `returns`

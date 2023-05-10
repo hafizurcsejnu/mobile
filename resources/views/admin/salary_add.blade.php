@@ -27,7 +27,7 @@
                   <div class="row">                     
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="">Salary Month / Title</label>
+                        <label for="">Salary Month</label>
                         <input type="text" name="title" required class="form-control" id=""  placeholder="Enter title here">
                       </div>  
                     </div>

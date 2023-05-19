@@ -156,14 +156,14 @@
                                  ->get();   
                     $total_price = 0;   
                 @endphp
-                @foreach ($products as $item)
+                @foreach ($products as $key => $item)
                 @php
                     $total_price = $total_price + $item->price;
                 @endphp
                     <div class="row content" id="row_{{$loop->iteration}}">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <select class="form-control select2-single product" name="product_id[]" id="productId_1"
+                          <select class="form-control select2-single product" name="product_id[]" id="productId_{{$loop->iteration}}"
                           style="width: 100%;"> 
                           <?php                             
                                 $products = DB::table('products')
@@ -203,7 +203,7 @@
                       </div>
                       <div class="col-md-1">
                         <div class="form-group">
-                          <button type="button" class="btn btn-danger form-control"><i class="fa fa-trash"></i></button>
+                          <button type="button" id="{{$key + 1}}" class="btn btn-danger form-control btn_remove"><i class="fa fa-trash"></i></button>
                         </div>
                       </div>
                       <div class="col-md-1">
@@ -358,7 +358,7 @@
 
 <script>   
   $(document).ready(function () {
-    let i = 1;  
+    let i = '{{$products->count()}}';  
     var j = 0; 
     $(document).on('click', '#addRow', function (event) {
       event.preventDefault();

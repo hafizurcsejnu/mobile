@@ -434,6 +434,7 @@ Route::middleware([admin::class])->group(function () {
     Route::get('/invoices', [InvoiceController::class, 'index']);  
     Route::get('/add-invoice', [InvoiceController::class, 'create']);
     Route::get('/add-invoice2', [InvoiceController::class, 'create2']);
+    Route::get('/add-invoice3', [InvoiceController::class, 'create3']);
     Route::get('/create-invoice', [InvoiceController::class, 'createInvoice']);
     Route::get('/wholesale-invoice', [InvoiceController::class, 'createWholesale']);
     Route::post('/store_invoice', [InvoiceController::class, 'store']);

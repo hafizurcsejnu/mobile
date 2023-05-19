@@ -179,6 +179,10 @@ class InvoiceController extends Controller
       public function create2()
       {    
         return view('admin.invoice_add_m'); 
+      }   
+      public function create3()
+      {    
+        return view('admin.invoice_add_package'); 
       }  
       
       public function invoiceStock()
